@@ -137,9 +137,10 @@ if st.session_state.workflow == 'Data preparation, Exploratory Data analysis, Da
         st.session_state.data_type=st.text("")       
         st.code("""We already started fixing inconsistent data types while importing the datasets, 
 we parsed the data types as strings in order to be able to handle it easier later. \n \nAs we saw from visualizing some rows of each dataset, we have some categorical data, 
-which we can turn into numerical: \n 
+which we must turn into numerical: \n 
+Also, for example assortment is alphabetical, \n'a' -> 0, \n'b' -> 1, \netc."
 The date can break into Year/Month (we already have day of week in the dataset). \n
-Also, for example assortment is alphabetical, \n'a' -> 0, \n'b' -> 1, \netc.""", language="markdown")
+"", language="markdown")
        
 
         code = '''#This function is created to turn categorical column into numerical.
@@ -198,7 +199,7 @@ they have no sales""", language="markdown")
 
         st.session_state.data_type=st.text("")
 
-        st.code("""Step 3 - We want to break the Date column into Year and Month, then drop date.""", language="markdown")
+        st.code("""Step 3 - We want to break the Date column into Year and Month.""", language="markdown")
 
         train['Year'] = pd.DatetimeIndex(train['Date']).year
         train['Month'] = pd.DatetimeIndex(train['Date']).month
@@ -669,15 +670,15 @@ Decision Tree Regressor, Gradient Boosting Regressor, Linear Regression""", lang
         
          
         for  model_name,model in model_list.items(): 
-                                st.write("**",model_name,"**")
-                                model.fit(X_train, y_train)
-                                st.write("**Accuracy: **",model.score(X_test, y_test))
-                                test_model = pd.DataFrame(test_model)
-                                submission = {}
-                                submission = pd.DataFrame()
-                                submission["Predicted Sales"] = model.predict(test_model)
-                                submission = submission.reset_index()
-                                st.write(submission)
+                st.write("**",model_name,"**")
+                model.fit(X_train, y_train)
+                st.write("**Accuracy: **",model.score(X_test, y_test))
+                test_model = pd.DataFrame(test_model)
+                submission = {}
+                submission = pd.DataFrame()
+                submission["Predicted Sales"] = model.predict(test_model)
+                submission = submission.reset_index()
+                st.write(submission)
 
 
                 
