@@ -138,9 +138,8 @@ if st.session_state.workflow == 'Data preparation, Exploratory Data analysis, Da
         st.code("""We already started fixing inconsistent data types while importing the datasets, 
 we parsed the data types as strings in order to be able to handle it easier later. \n \nAs we saw from visualizing some rows of each dataset, we have some categorical data, 
 which we must turn into numerical: \n 
-Also, for example assortment is alphabetical, \n'a' -> 0, \n'b' -> 1, \netc."
-The date can break into Year/Month (we already have day of week in the dataset). \n
-"", language="markdown")
+For example, assortment is alphabetical, \n'a' -> 0, \n'b' -> 1, \netc.
+The date can break into Year/Month (we already have day of week in the dataset). \n""", language="markdown")
        
 
         code = '''#This function is created to turn categorical column into numerical.
@@ -604,7 +603,7 @@ Step 2 - Merge them.""", language="markdown")
         st.session_state.data_type=st.text("")
 
         st.code("""Now, its time to start modeling. First of all, we will drop columns that are useless 
-for the forecasting, like Customers, Data from train_store, and Date and ID 
+for the forecasting, like Customers, Date from train_store, and Date and ID 
 from test_store""", language="markdown")
         
         train_model = train_store.drop(['Customers', 'Date'], axis=1)
@@ -616,13 +615,11 @@ from test_store""", language="markdown")
 
         st.code("""Also, for the train we will drop Sales column, 
 because we want to fit our models without the Sales so we can make the forecast
-Then, break train test split using \"train_test_split function\"""", language="markdown")
+Then, we splitted train_store into train and test, using  \"train_test_split function\"""", language="markdown")
 
         X = train_model.drop('Sales', axis=1)
         y = train_model['Sales']
 
-        X = train_model.drop('Sales', axis=1)
-        y = train_model['Sales']
         X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 
         st.code("""The models that we are going to use are: Sklearn's: 
@@ -698,7 +695,7 @@ about.write('Αυτή η εργασία έγινε στα πλαίσια του 
 about.write('**Διδάσκων:** Δρ. Ανδρέας Χριστοφόρου')
 about.write('Η ομάδα μας αποτελείται απο τους:')
 about.write('👨‍🦱 Στέλιος Μάππουρας')
-about.write('👱‍♂️ Ιωάννη Βολονάκη')
+about.write('👱‍♂️ Ιωάννης Βολονάκης')
 about.write('👨‍🦰 Μάριος Κυριακίδης')
 about.write('👩‍🦱 Σαββίνα Ρούσου')
 
